@@ -1,0 +1,23 @@
+{
+  "name": "cli-crypto-charts",
+  "version": "1.0.0",
+  "description": "View cryptocurrency charts in your terminal.",
+  "main": "cryptocharts.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "https://github.com/smoove",
+  "license": "MIT",
+  "dependencies": {
+    "blessed": "^0.1.81",
+    "blessed-contrib": "^4.8.5",
+    "chalk": "^2.3.0",
+    "configparser": "^0.1.5",
+    "limiter": "^1.1.2",
+    "moment": "^2.20.1",
+    "numeral": "^2.0.6",
+    "percent-change": "^1.0.1",
+    "request-promise": "^4.2.2",
+    "ws": "^4.0.0"
+  }
+}
