@@ -1,11 +1,13 @@
 # Terminal crypto charts
-View cryptocurrency charts in your terminal
+View cryptocurrency charts in your terminal.
 
 This app allows you to monitor 3 crypto trading pairs in your terminal.
 
 Each trading pair has a corresponding line chart, price information, percentage change over time and live trading data.
 
 **Currently only supports GDAX exchange.**
+
+![screenshot](https://raw.githubusercontent.com/smoove/cli-crypto-charts/master/screenshot.png)
 
 ## Requirements
 Node.js
