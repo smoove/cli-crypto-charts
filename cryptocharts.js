@@ -11,15 +11,20 @@ var RateLimiter = require('limiter').RateLimiter;
 var ConfigParser = require('configparser');
 var config = new ConfigParser();
 var WebSocket = require('ws');
+var ReconnectingWebSocket = require('reconnecting-websocket');
 
 config.read('config.ini');
 
-var ws;
+var rws     = new ReconnectingWebSocket('wss://ws-feed.gdax.com', [], {constructor: WebSocket});
 var pairs   = config.sections();
 var limiter = new RateLimiter(3, 'second');
 var screen  = blessed.screen()
 
 screen.key(['escape', 'q', 'C-c'], function(ch, key) {
+  // Close WebSocket
+  rws.close();
+
+  // Kill process.
   return process.exit(0);
 });
 
@@ -289,14 +294,13 @@ var update = () => {
 
 // Subscribe to live data web socket
 var subscribeWebSocket = () => {
-  ws = new WebSocket('wss://ws-feed.gdax.com');
-
   var subscription = '{"type": "subscribe", "product_ids": ["' + pairs.join('","') + '"], "channels": ["matches"] }';
-  ws.on('open', function open() {
-    ws.send(subscription);
+
+  rws.on('open', function open() {
+    rws.send(subscription);
   });
 
-  ws.on('message', function incoming(data) {
+  rws.on('message', function incoming(data) {
     data = JSON.parse(data);
     if(data['type'] != 'match') {
       return;

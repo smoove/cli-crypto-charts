@@ -17,6 +17,7 @@
     "moment": "^2.20.1",
     "numeral": "^2.0.6",
     "percent-change": "^1.0.1",
+    "reconnecting-websocket": "^3.2.2",
     "request-promise": "^4.2.2",
     "ws": "^4.0.0"
   }
