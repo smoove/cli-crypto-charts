@@ -15,7 +15,7 @@ var ReconnectingWebSocket = require('reconnecting-websocket');
 
 config.read('config.ini');
 
-var rws     = new ReconnectingWebSocket('wss://ws-feed.gdax.com', [], {constructor: WebSocket});
+var rws     = new ReconnectingWebSocket('wss://ws-feed.pro.coinbase.com', [], {constructor: WebSocket});
 var pairs   = config.sections();
 var limiter = new RateLimiter(3, 'second');
 var screen  = blessed.screen()
@@ -84,7 +84,7 @@ var updateCandles = (pair, granularity = 300) => {
   }
 
   var options = {
-    url: 'http://api.gdax.com/products/' + pair + '/candles?granularity=' + granularity,
+    url: 'http://api.pro.coinbase.com/products/' + pair + '/candles?granularity=' + granularity,
     headers: {
       'User-Agent': 'cli-graph-lib'
     },
